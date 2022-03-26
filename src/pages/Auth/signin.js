@@ -25,16 +25,16 @@ export default function SignIn({ navigation }) {
             </ImageBackground>
             <View style={styles.bottomView}>
                 <View style={{ padding: 40 }}>
-                    <Text style={{ color: '#F95A41', fontSize: 34 }}>Bem-vindo</Text>
+                    <Text style={{ color: '#D21E1F', fontSize: 34 }}>Bem-vindo</Text>
                     <Text>Verifica a tua conta
-                        <Text style={{ color: '#F95A41' }} onPress={() => navigation.navigate('VerifyEmail')}> aqui</Text>
+                        <Text style={{ color: '#D21E1F' }} onPress={() => navigation.navigate('VerifyEmail')}> aqui</Text>
                     </Text>
                     <View style={{ marginTop: 30 }}>
-                        <Item floatingLabel style={{ borderColor: '#F95A41' }}>
+                        <Item floatingLabel style={{ borderColor: '#D21E1F' }}>
                             <Label>E-mail/Nickname</Label>
                             <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setLogin(text)} value={login} />
                         </Item>
-                        <Item floatingLabel style={{ borderColor: '#F95A41', marginTop: 20 }}>
+                        <Item floatingLabel style={{ borderColor: '#D21E1F', marginTop: 20 }}>
                             <Label>Password</Label>
                             <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setPassword(text)} value={password} secureTextEntry={true} />
                         </Item>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     },
     loginBtn: {
         alignSelf: 'center',
-        backgroundColor: '#F95A41',
+        backgroundColor: '#D21E1F',
         width: Dimensions.get('window').width / 2,
         justifyContent: 'center',
         borderRadius: 10,

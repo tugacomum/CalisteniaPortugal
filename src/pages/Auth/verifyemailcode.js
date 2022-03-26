@@ -58,10 +58,10 @@ export default function VerifyEmail({ route, navigation }) {
             </ImageBackground>
             <View style={styles.bottomView}>
                 <View style={{ padding: 40 }}>
-                    <Text style={{ color: '#F95A41', fontSize: 34 }}>Verificar conta</Text>
+                    <Text style={{ color: '#D21E1F', fontSize: 34 }}>Verificar conta</Text>
                     <Text>Introduz o teu email e o código que enviamos!</Text>
                     <View style={{ marginTop: 22 }}>
-                        <Item floatingLabel style={{ borderColor: '#F95A41', marginTop: 20 }}>
+                        <Item floatingLabel style={{ borderColor: '#D21E1F', marginTop: 20 }}>
                             <Label>Email</Label>
                             <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setLogin(text)} value={login} />
                         </Item>
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     loginBtn: {
         top: 30,
         alignSelf: 'center',
-        backgroundColor: '#F95A41',
+        backgroundColor: '#D21E1F',
         width: Dimensions.get('window').width / 2,
         justifyContent: 'center',
         borderRadius: 10,

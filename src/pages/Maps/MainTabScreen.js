@@ -14,7 +14,7 @@ const MainTabScreen = ({navigation}) => {
       headerShown: true,
       headerTintColor: 'black',
       headerStyle: {
-          backgroundColor: '#F95A41',
+          backgroundColor: '#D21E1F',
           height: 40,
       }
     }}>

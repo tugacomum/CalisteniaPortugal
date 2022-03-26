@@ -1,112 +1,68 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+import { Input, Item } from "native-base";
 import {
   View,
   Text,
-  TouchableOpacity,
-  ImageBackground,
-  TextInput,
   StyleSheet,
   Dimensions,
 } from 'react-native';
-import {useTheme} from 'react-native-paper';
+import { Alert } from 'react-native';
+import { useState } from 'react';
+import { Label } from "native-base";
+import { Button } from "native-base";
+import { api } from '../../services/api';
+import { useAuth } from '../../contexts/auth';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Feather from 'react-native-vector-icons/Feather';
-
-const EditProfileScreen = ({navigation}) => {
-  const {colors} = useTheme();
+const EditProfileScreen = ({ navigation }) => {
+  const URL_REGISTO = 'profile';
+  const { user, setUser } = useAuth();
+  const [nickname, setNickname] = useState(user.nickname ?? "");
+  const [goals, setGoals] = useState(user.goals ?? "");
+  const [avatar, setAvatar] = useState(user.avatar ?? "");
+  const [bio, setBio] = useState(user.bio) ?? "";
+  const EditProfile = async (e) => {
+    e.preventDefault();
+    try {
+      if (nickname.length < 6 || nickname === "")
+        throw new Error('Nickname tem que ser maior que 6 e não pode ser nulo')
+      else if (goals.length < 0 || goals === "")
+        throw new Error('Objetivos têm que ter um comprimento maior que 0')
+      else if (bio.length < 0 || bio === "")
+        throw new Error('Biografia inválida')
+      const response = await api.patch(URL_REGISTO, { nickname, goals, avatar, bio });
+      setUser({ ...user, nickname, goals, avatar, bio });
+      navigation.navigate('Profile');
+    } catch (err) {
+      Alert.alert('Erro', err.message);
+    }
+  }
   return (
-    <View style={styles.container}>
-        <View style={styles.action}>
-          <FontAwesome name="user-o" color={colors.text} size={20} />
-          <TextInput
-            placeholder="Primeiro nome"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
-          />
+    <View style={styles.bottomView}>
+      <View style={{ padding: 40 }}>
+        <View style={{ marginTop: 0 }}>
+          <Item floatingLabel style={{ borderColor: '#D21E1F', marginTop: 50 }}>
+            <Label>Nickname</Label>
+            <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setNickname(text)} value={nickname} />
+          </Item>
+          <Item floatingLabel style={{ borderColor: '#D21E1F', marginTop: 20 }}>
+            <Label>Goals</Label>
+            <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setGoals(text)} value={goals} />
+          </Item>
+          <Item floatingLabel style={{ borderColor: '#D21E1F', marginTop: 20 }}>
+            <Label>Avatar</Label>
+            <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setAvatar(text)} value={avatar} />
+          </Item>
+          <Item floatingLabel style={{ borderColor: '#D21E1F', marginTop: 20 }}>
+            <Label>Bio</Label>
+            <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setBio(text)} value={bio} />
+          </Item>
         </View>
-        <View style={styles.action}>
-          <FontAwesome name="user-o" color={colors.text} size={20} />
-          <TextInput
-            placeholder="Último nome"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
-          />
+        <View style={{ height: 100, justifyContent: 'center', alignItems: 'center' }}>
+          <Button style={styles.loginBtn} onPress={EditProfile}>
+            <Text style={{ color: '#ffffff' }}>Submeter</Text>
+          </Button>
         </View>
-        <View style={styles.action}>
-          <Feather name="phone" color={colors.text} size={20} />
-          <TextInput
-            placeholder="Número de telemóvel"
-            placeholderTextColor="#666666"
-            keyboardType="number-pad"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
-          />
-        </View>
-        <View style={styles.action}>
-          <FontAwesome name="envelope-o" color={colors.text} size={20} />
-          <TextInput
-            placeholder="Email"
-            placeholderTextColor="#666666"
-            keyboardType="email-address"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
-          />
-        </View>
-        <View style={styles.action}>
-          <FontAwesome name="globe" color={colors.text} size={20} />
-          <TextInput
-            placeholder="País"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
-          />
-        </View>
-        <View style={styles.action}>
-          <Icon name="map-marker-outline" color={colors.text} size={20} />
-          <TextInput
-            placeholder="Cidade"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
-          />
-        </View>
-        <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate('Profile')}>
-          <Text style={styles.panelButtonTitle}>Submeter</Text>
-        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -114,84 +70,35 @@ const EditProfileScreen = ({navigation}) => {
 export default EditProfileScreen;
 
 const styles = StyleSheet.create({
-  container: {
+  brandView: {
     flex: 1,
-  },
-  commandButton: {
-    padding: 15,
-    borderRadius: 10,
-    backgroundColor: '#F95A41',
-    alignItems: 'center',
-    marginHorizontal: 20,
-    marginVertical: Dimensions.get('window').height / 3.7
-  },
-  panel: {
-    padding: 20,
-    backgroundColor: '#FFFFFF',
-    paddingTop: 20,
-  },
-  header: {
-    backgroundColor: '#FFFFFF',
-    shadowColor: '#333333',
-    shadowOffset: {width: -1, height: -3},
-    shadowRadius: 2,
-    shadowOpacity: 0.4,
-    paddingTop: 20,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-  panelHeader: {
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  panelHandle: {
-    width: 40,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: '#00000040',
-    marginBottom: 10,
-  },
-  panelTitle: {
-    fontSize: 27,
-    height: 35,
-  },
-  panelSubtitle: {
-    fontSize: 14,
-    color: 'gray',
-    height: 30,
-    marginBottom: 10,
-  },
-  panelButton: {
-    padding: 13,
-    borderRadius: 10,
-    backgroundColor: '#F95A41',
-    alignItems: 'center',
-    marginVertical: 7,
-  },
-  panelButtonTitle: {
-    fontSize: 17,
+  brandViewText: {
+    color: '#FFFFFF',
+    fontSize: 25,
     fontWeight: 'bold',
-    color: 'white',
+    textTransform: 'uppercase',
   },
-  action: {
+  bottomView: {
+    flex: 1.5,
+    backgroundColor: '#ffffff',
+    bottom: 50,
+    borderTopStartRadius: 60,
+    borderTopEndRadius: 60,
+  },
+  forgotPassView: {
+    height: 50,
+    marginTop: 20,
     flexDirection: 'row',
-    marginTop: 10,
-    marginBottom: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f2f2f2',
-    paddingBottom: 5,
-    padding: 20,
   },
-  actionError: {
-    flexDirection: 'row',
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F95A41',
-    paddingBottom: 5,
-  },
-  textInput: {
-    flex: 1,
-    marginTop: Platform.OS === 'ios' ? 0 : -12,
-    paddingLeft: 10,
-    color: '#05375a',
-  },
+  loginBtn: {
+    alignSelf: 'center',
+    backgroundColor: '#F95A41',
+    width: Dimensions.get('window').width / 2,
+    justifyContent: 'center',
+    borderRadius: 10,
+    top: 20
+  }
 });

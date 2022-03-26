@@ -6,8 +6,8 @@ export default function calendar({navigation}) {
     return (
         <View>
             <Calendar hideExtraDays style={styles.calendario} theme={{
-                arrowColor: '#F95A41',
-                todayTextColor: '#F95A41',
+                arrowColor: '#D21E1F',
+                todayTextColor: '#D21E1F',
             }} />
             <View style={{ alignItems: 'center' }}>
                 <View style={{ alignSelf: 'center' }}>

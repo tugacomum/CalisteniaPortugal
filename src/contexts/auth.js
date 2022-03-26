@@ -18,6 +18,7 @@ export function AuthProvider({ children }) {
             }).then(r => r.data);
             api.defaults.headers['authorization'] = `Bearer ${token}`;
             AsyncStorage.setItem('@calistenia_pt:token', token);
+            console.log(token);
             setUser(user);
         } catch (err) {
             Alert.alert("Erro", err.response.data.message);
@@ -25,12 +26,15 @@ export function AuthProvider({ children }) {
     }
 
     async function checkToken() {
-        const token = await AsyncStorage.getItem('token');
+        const token = await AsyncStorage.getItem('@calistenia_pt:token');
+        console.log(token);
         if (token) {
             api.defaults.headers['authorization'] = `Bearer ${token}`;
             const user = await api.get('profile').then(r => r.data);
+            
             setUser(user);
         }
+        
     }
 
     function logout() {
@@ -39,7 +43,7 @@ export function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ user, signIn, logout }}>
+        <AuthContext.Provider value={{ user, signIn, logout, setUser }}>
             {children}
         </AuthContext.Provider>
     )

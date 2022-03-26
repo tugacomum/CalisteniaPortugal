@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
     btnregister: {
         top: teste,
-        backgroundColor: '#F95A41',
+        backgroundColor: '#D21E1F',
         width: Dimensions.get('window').width / 2.2,
         justifyContent: 'center',
         borderRadius: 10,

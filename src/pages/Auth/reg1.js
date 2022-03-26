@@ -17,14 +17,14 @@ export default function Reg1({ navigation }) {
                 <Text style={styles.textTitle}>Calistenia Portugal</Text>
                 <Text style={styles.textG}>Género</Text>
                 <View style={{ flexDirection: 'row', alignSelf: 'center', top: testee }}>
-                    <View style={{ top: 40, borderWidth: 2, borderRadius: 10, borderColor: index === 1 ? '#F95A41' : 'grey', height: 150, padding: 5 }}>
+                    <View style={{ top: 40, borderWidth: 2, borderRadius: 10, borderColor: index === 1 ? '#D21E1F' : 'grey', height: 150, padding: 5 }}>
                         <TouchableOpacity onPress={() => setIndex(1)} style={{ height: 100, width: 100 }}>
                             <ImageBackground source={require('./../../../assets/img/female.png')} style={{ width: '100%', height: '100%' }} />
                         </TouchableOpacity>
                         <Text style={{ fontWeight: 'bold', color: 'white', fontSize: 20, alignSelf: 'center', top: 10 }}>Mulher</Text>
                     </View>
                     <View style={{ padding: 25 }}></View>
-                    <View style={{ top: 40, borderWidth: 2, borderRadius: 10, borderColor: index === 2 ? '#F95A41' : 'grey', height: 150, padding: 5 }}>
+                    <View style={{ top: 40, borderWidth: 2, borderRadius: 10, borderColor: index === 2 ? '#D21E1F' : 'grey', height: 150, padding: 5 }}>
                         <TouchableOpacity onPress={() => setIndex(2)} style={{ height: 100, width: 100 }}>
                             <ImageBackground source={require('./../../../assets/img/male.png')} style={{ width: '100%', height: '100%' }} />
                         </TouchableOpacity>

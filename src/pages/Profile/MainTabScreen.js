@@ -6,7 +6,7 @@ import 'react-native-gesture-handler';
 
 const ProfileStack = createStackNavigator();
 
-const MainTabScreen = ({ navigation }) => {
+const MainTabScreen = () => {
   return (
     <>
       <ProfileStack.Navigator
@@ -14,7 +14,7 @@ const MainTabScreen = ({ navigation }) => {
           headerShown: true,
           headerTintColor: 'black',
           headerStyle: {
-            backgroundColor: '#F95A41',
+            backgroundColor: '#D21E1F',
             height: 40,
           }
         }}>

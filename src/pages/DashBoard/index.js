@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         right: 100,
     },
     textTradd: {
-        color: "#F95A41",
+        color: "#D21E1F",
         fontSize: 15,
         fontWeight: "bold",
         top: -225,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
     textPradd: {
 
-        color: "#F95A41",
+        color: "#D21E1F",
         fontSize: 15,
         fontWeight: 'bold',
         alignSelf: 'flex-end',
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     },
     textExadd: {
 
-        color: "#F95A41", 
+        color: "#D21E1F", 
         fontSize: 15,
         fontWeight: 'bold',
         top: 120,

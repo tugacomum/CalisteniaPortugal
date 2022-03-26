@@ -20,7 +20,7 @@ export default function Reg5({ navigation }) {
                     <TouchableOpacity style={{
                         top: -15,
                         paddingTop: 3,
-                        borderWidth: 2, borderRadius: 10, borderColor: index === 1 ? '#F95A41' : 'grey', height: 70, justifyContent:'center'
+                        borderWidth: 2, borderRadius: 10, borderColor: index === 1 ? '#D21E1F' : 'grey', height: 70, justifyContent:'center'
                     }}
                         onPress={() => setIndex(1)}>
                         <Text style={{
@@ -36,7 +36,7 @@ export default function Reg5({ navigation }) {
                     <TouchableOpacity style={{
                         top: 15,
                         paddingTop: 3,
-                        borderWidth: 2, borderRadius: 10, borderColor: index === 2 ? '#F95A41' : 'grey', height: 70, justifyContent:'center'
+                        borderWidth: 2, borderRadius: 10, borderColor: index === 2 ? '#D21E1F' : 'grey', height: 70, justifyContent:'center'
                     }} onPress={() => setIndex(2)}>
                         <Text style={{
                             color: "#FFFF",
@@ -51,7 +51,7 @@ export default function Reg5({ navigation }) {
                     <TouchableOpacity style={{
                         top: 45,
                         paddingTop: 3,
-                        borderWidth: 2, borderRadius: 10, borderColor: index === 3 ? '#F95A41' : 'grey', height: 70, justifyContent:'center'
+                        borderWidth: 2, borderRadius: 10, borderColor: index === 3 ? '#D21E1F' : 'grey', height: 70, justifyContent:'center'
                     }} onPress={() => setIndex(3)}>
                         <Text style={{
                             color: "#FFFF",
@@ -66,7 +66,7 @@ export default function Reg5({ navigation }) {
                     <TouchableOpacity style={{
                         top: 75,
                         paddingTop: 3,
-                        borderWidth: 2, borderRadius: 10, borderColor: index === 4 ? '#F95A41' : 'grey', height: 70, justifyContent:'center'
+                        borderWidth: 2, borderRadius: 10, borderColor: index === 4 ? '#D21E1F' : 'grey', height: 70, justifyContent:'center'
                     }} onPress={() => setIndex(4)}>
                         <Text style={{
                             color: "#FFFF",
