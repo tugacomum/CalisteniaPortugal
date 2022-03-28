@@ -15,7 +15,7 @@ export default function Exercise() {
             <Searchbar
                 placeholder="Procurar exercícios"
                 onChangeText={onChangeSearch}
-                value={searchQuery} style={{ height: 40, top: -8 }}
+                value={searchQuery} style={{ height: 40 }}
             />
             <SafeAreaView style={styles.container}>
                 <BottomSheet hasDraggableIcon ref={bottomSheet} height={530}>

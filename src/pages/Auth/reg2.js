@@ -14,7 +14,6 @@ export default function Reg2({ navigation }) {
                 style={styles.img}>
                 <Text style={styles.textTitle}>Calistenia Portugal</Text>
                 <Text style={styles.textP}>Peso</Text>
-                <Text>I would like</Text>
                 <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
                     <Button onPress={() => navigation.navigate('Reg3')} style={styles.btnregister}>
                         <Text style={styles.textregister}>Próximo</Text>

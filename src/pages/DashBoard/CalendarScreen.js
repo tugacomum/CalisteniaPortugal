@@ -12,13 +12,7 @@ export default function calendar({navigation}) {
             <View style={{ alignItems: 'center' }}>
                 <View style={{ alignSelf: 'center' }}>
                     <ImageBackground source={require('./../../../assets/img/dumbbell.png')} style={styles.plus1} />
-                    <Text style={styles.exercTitle}>Nenhuma sessão de treino</Text>
-                    <Text style={{
-                        fontSize: 16,
-                        alignSelf: 'center',
-                        color: 'black',
-                        textAlign: 'center'
-                    }}>Navega na nossa livraria e adiciona os teus exercícios favoritos!</Text>
+                    <Text style={styles.exercTitle}>Sem sessões de treino</Text>
                 </View>
             </View>
         </View>
@@ -47,7 +41,7 @@ const styles = StyleSheet.create({
     },
     exercTitle: {
         paddingTop: 110,
-        fontSize: 16,
+        fontSize: 15,
         alignSelf: 'center'
     },
     programaTitle: {
@@ -56,9 +50,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     plus1: {
-        top: 120,
-        height: 80,
-        width: 80,
+        top: 90,
+        height: 60,
+        width: 60,
         alignSelf: 'center'
     },
 });

@@ -32,11 +32,11 @@ export default function SignIn({ navigation }) {
                     <View style={{ marginTop: 30 }}>
                         <Item floatingLabel style={{ borderColor: '#D21E1F' }}>
                             <Label>E-mail/Nickname</Label>
-                            <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setLogin(text)} value={login} />
+                            <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setLogin(text)} value={login} style={{top: 5}}/>
                         </Item>
                         <Item floatingLabel style={{ borderColor: '#D21E1F', marginTop: 20 }}>
                             <Label>Password</Label>
-                            <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setPassword(text)} value={password} secureTextEntry={true} />
+                            <Input autoCapitalize='none' autoComplete='off' onChangeText={(text) => setPassword(text)} value={password} secureTextEntry={true} style={{top: 5}}/>
                         </Item>
                         <View style={styles.forgotPassView}>
                             <View style={{ flex: 1, marginRight: -20 }}>

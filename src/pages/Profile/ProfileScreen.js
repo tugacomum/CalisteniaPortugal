@@ -12,10 +12,10 @@ import { Dimensions } from 'react-native';
 import { useAuth } from '../../contexts/auth';
 
 export default function Profile({ navigation }) {
-    const { user, logout} = useAuth();
+    const { user, logout } = useAuth();
     return (
         <>
-            <Image source={require('./../../../assets/img/pfpback.jpg')} style={{ width: Dimensions.get('window').width / 1, height: 150, position: 'absolute', opacity: 0.8 }} />
+            <Image source={require('./../../../assets/img/pfpback.jpg')} style={{ width: Dimensions.get('window').width / 1, height: 140, position: 'absolute', opacity: 0.8 }} />
             <SafeAreaView style={styles.container}>
                 <View style={styles.userInfoSection}>
                     <View style={{ flexDirection: 'row', marginTop: 15 }}>
@@ -23,6 +23,7 @@ export default function Profile({ navigation }) {
                             source={require('./../../../assets/img/teste4.jpg')}
                             size={80}
                         />
+                        <MaterialCommunityIcons name="cog" color='white' style={{ left: Dimensions.get('window').width / 1.4, position: 'absolute', top: 15}} size={30} onPress={() => navigation.navigate('EditProfile')} />
                         <View style={{ marginLeft: 20 }}>
                             <Title style={[styles.title, {
                                 marginTop: 10,
@@ -30,7 +31,6 @@ export default function Profile({ navigation }) {
                             }]}>@{user.nickname}</Title>
                             {user.bio == null ? <Caption style={styles.caption}>sem biografia</Caption> : <Caption style={styles.caption}>{user.bio}</Caption>}
                         </View>
-                        <MaterialCommunityIcons name="cog" color='white' style={{ top: -25, paddingLeft: 100, alignSelf: 'flex-end' }} size={30} onPress={() => navigation.navigate('EditProfile')} />
                     </View>
                 </View>
                 <View style={{ alignItems: 'center' }}>
@@ -45,14 +45,9 @@ export default function Profile({ navigation }) {
                         <Text style={{ color: '#ffffff', fontWeight: 'bold' }}>Começar</Text>
                     </Button>
                 </View>
-                <View style={{ height: 100, justifyContent: 'center', alignItems: 'center' }}>
-                    <Button style={styles.btn} onPress={() => logout()}>
-                        <Text style={{ color: '#ffffff', fontWeight: 'bold' }}>Terminar sessão</Text>
-                    </Button>
-                </View>
             </SafeAreaView>
         </>
-    );             
+    );
 }
 
 const styles = StyleSheet.create({

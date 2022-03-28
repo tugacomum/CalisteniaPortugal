@@ -1,19 +1,13 @@
-import { Button } from 'native-base';
 import React from 'react'
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Dimensions } from 'react-native';
-
+import { Camera } from 'expo-camera';
 const teste = Dimensions.get('window').height / 1.19
 const testee = Dimensions.get('window').height / 1.6
 
 export default function Premium() {
     return (
-        <View>
-            <ImageBackground
-                source={require('./../../../assets/img/premiumthi.jpg')}
-                style={styles.img}>
-            </ImageBackground>
-        </View>
+      <View></View>
     );
 }
 
@@ -38,13 +32,13 @@ const styles = StyleSheet.create({
     },
     textlogin: {
         color: 'black',
-        alignSelf:'center',
+        alignSelf: 'center',
         fontWeight: 'bold',
         fontSize: 17,
     },
     textregister: {
         color: '#fff',
-        alignSelf:'center',
+        alignSelf: 'center',
         fontWeight: 'bold',
         fontSize: 17,
     },

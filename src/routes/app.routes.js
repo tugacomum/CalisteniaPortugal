@@ -2,7 +2,7 @@ import React from 'react';
 import 'react-native-gesture-handler';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Library from '../pages/Library/MainTabScreen';
-import Calendar from '../pages/Calendar/MainTabScreen';
+import Dashboard from '../pages/Dashboard/MainTabScreen';
 import Profile from '../pages/Profile/MainTabScreen';
 import Maps from '../pages/Maps/MainTabScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator();
 export default function AppRoutes({navigation}) {
   return (
     <>
-      <StatusBar backgroundColor={'#C40C09'} barStyle='light-content' translucent={false} />
+      <StatusBar backgroundColor={'#9A0101'} barStyle='light-content' translucent={false} />
       <Tab.Navigator initialRouteName='Library' tabBarOptions={{
         showLabel: true,
         activeTintColor: 'black',
@@ -42,7 +42,7 @@ export default function AppRoutes({navigation}) {
             </View>
           )
         }}></Tab.Screen>
-        <Tab.Screen name="Calendar" component={Calendar} options={{
+        <Tab.Screen name="Dashboard" component={Dashboard} options={{
           tabBarLabel: 'Hoje',
           tabBarIcon: ({ focused }) => (
             <View style={{
