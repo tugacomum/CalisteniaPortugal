@@ -13,31 +13,22 @@ const MainTabScreen = ({navigation}) => {
   return (
     <ProfileStack.Navigator
     screenOptions={{
-      headerShown: true,
+      headerShown: false,
       headerTintColor: 'white',
-      headerTitleAlign: 'center',
-      headerTitleStyle: {
-        fontSize: 20
-      },
-      headerStyle: {
-          backgroundColor: '#D21E1F',
-          height: 55,
-      },
-      cardStyle: {
-         backgroundColor: 'white',
-      }
+          headerStyle: {
+            backgroundColor: '#D21E1F',
+            height: 50,
+          }
     }}>
         <ProfileStack.Screen
         name="Library"
-        options={{
-          title: 'Livraria',
-        }}
         component={LibraryScreen}
       />
       <ProfileStack.Screen
         name="Exercise"
         options={{
           title: 'Exercícios',
+          headerShown: true,
         }}
         component={Exercise}
       />

@@ -12,7 +12,7 @@ const MainTabScreen = ({navigation}) => {
     <ProfileStack.Navigator
     screenOptions={{
       headerShown: true,
-      headerTintColor: 'black',
+      headerTintColor: 'white',
       headerStyle: {
           backgroundColor: '#D21E1F',
           height: 40,

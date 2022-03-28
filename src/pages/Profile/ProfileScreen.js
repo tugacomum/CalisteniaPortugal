@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, ImageBackground, Image, View } from 'react-native';
+import { SafeAreaView, StyleSheet, ImageBackground, Image, View, ScrollView, RefreshControl } from 'react-native';
 import {
     Avatar,
     Title,
@@ -11,41 +11,55 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { Dimensions } from 'react-native';
 import { useAuth } from '../../contexts/auth';
 
+const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
 export default function Profile({ navigation }) {
+    const [refreshing, setRefreshing] = React.useState(false);
+
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        wait(2000).then(() => setRefreshing(false));
+    }, []);
     const { user, logout } = useAuth();
     return (
         <>
-            <Image source={require('./../../../assets/img/pfpback.jpg')} style={{ width: Dimensions.get('window').width / 1, height: 140, position: 'absolute', opacity: 0.8 }} />
-            <SafeAreaView style={styles.container}>
-                <View style={styles.userInfoSection}>
-                    <View style={{ flexDirection: 'row', marginTop: 15 }}>
-                        <Avatar.Image
-                            source={require('./../../../assets/img/teste4.jpg')}
-                            size={80}
-                        />
-                        <MaterialCommunityIcons name="cog" color='white' style={{ left: Dimensions.get('window').width / 1.4, position: 'absolute', top: 15}} size={30} onPress={() => navigation.navigate('EditProfile')} />
-                        <View style={{ marginLeft: 20 }}>
-                            <Title style={[styles.title, {
-                                marginTop: 10,
-                                marginBottom: 5
-                            }]}>@{user.nickname}</Title>
-                            {user.bio == null ? <Caption style={styles.caption}>sem biografia</Caption> : <Caption style={styles.caption}>{user.bio}</Caption>}
+            <ScrollView refreshControl={
+                <RefreshControl
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                />}>
+                <Image source={require('./../../../assets/img/pfpback.jpg')} style={{ width: Dimensions.get('window').width / 1, height: 140, position: 'absolute', opacity: 0.8 }} />
+                    <View style={styles.userInfoSection}>
+                        <View style={{ flexDirection: 'row', marginTop: 15 }}>
+                            <Avatar.Image
+                                source={require('./../../../assets/img/teste4.jpg')}
+                                size={80}
+                            />
+                            <MaterialCommunityIcons name="cog" color='white' style={{ left: Dimensions.get('window').width / 1.4, position: 'absolute', top: 15 }} size={30} onPress={() => navigation.navigate('EditProfile')} />
+                            <View style={{ marginLeft: 20 }}>
+                                <Title style={[styles.title, {
+                                    marginTop: 10,
+                                    marginBottom: 5
+                                }]}>@{user.nickname}</Title>
+                                {user.bio == null ? <Caption style={styles.caption}>sem biografia</Caption> : <Caption style={styles.caption}>{user.bio}</Caption>}
+                            </View>
                         </View>
                     </View>
-                </View>
-                <View style={{ alignItems: 'center' }}>
-                    <View style={{ height: 100, alignSelf: 'center' }}>
-                        <ImageBackground source={require('./../../../assets/img/dumbbell.png')} style={styles.plus1} />
-                        <Text style={styles.exercTitle}>Histórico de exercícios</Text>
-                        <Text style={styles.exercTitle}>Todos os programas de exercícios que já começaste vão aparecer aqui.</Text>
+                    <View style={{ alignItems: 'center' }}>
+                        <View style={{ alignSelf: 'center', padding: 20 }}>
+                            <ImageBackground source={require('./../../../assets/img/dumbbell.png')} style={styles.plus1} />
+                            <Text style={styles.exercTitle}>Sem histórico de treinos</Text>
+                            <Text style={styles.exercTitle}>Os treinos que tu completares vão aparecer aqui.</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={{ height: 100, justifyContent: 'center', alignItems: 'center' }}>
-                    <Button style={styles.btn}>
-                        <Text style={{ color: '#ffffff', fontWeight: 'bold' }}>Começar</Text>
-                    </Button>
-                </View>
-            </SafeAreaView>
+                    <View style={{  justifyContent: 'center', alignItems: 'center', paddingTop: 100}}>
+                        <Button style={styles.btn}>
+                            <Text style={{ color: '#ffffff', fontWeight: 'bold' }}>Começar treino</Text>
+                        </Button>
+                    </View>
+            </ScrollView>
         </>
     );
 }
@@ -101,8 +115,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     exercTitle: {
-        top: 60,
-        paddingTop: 10,
+        top: 100,
         fontSize: 16,
         alignSelf: 'center',
         textAlign: 'center'
@@ -113,6 +126,5 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width / 2,
         justifyContent: 'center',
         borderRadius: 10,
-        top: 130,
     }
 });

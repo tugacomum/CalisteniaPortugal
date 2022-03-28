@@ -1,10 +1,26 @@
 import React from 'react'
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, RefreshControl, ScrollView } from 'react-native';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 
+const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  }
+
 export default function calendar({navigation}) {
+    const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
     return (
         <View>
+            <ScrollView refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }>
             <Calendar hideExtraDays style={styles.calendario} theme={{
                 arrowColor: '#D21E1F',
                 todayTextColor: '#D21E1F',
@@ -15,6 +31,7 @@ export default function calendar({navigation}) {
                     <Text style={styles.exercTitle}>Sem sessões de treino</Text>
                 </View>
             </View>
+            </ScrollView>
         </View>
     );
 }

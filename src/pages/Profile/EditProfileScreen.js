@@ -7,7 +7,7 @@ import {
   Dimensions, Image, ScrollView
 } from 'react-native';
 import { Avatar } from 'react-native-paper';
-import { Alert } from 'react-native';
+import { Alert, RefreshControl } from 'react-native';
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from "native-base";
@@ -15,7 +15,17 @@ import { api } from '../../services/api';
 import { useAuth } from '../../contexts/auth';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
 const EditProfileScreen = ({ navigation }) => {
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   const URL_REGISTO = 'profile';
   const { user, setUser, logout } = useAuth();
   const [nickname, setNickname] = useState(user.nickname ?? "");
@@ -43,7 +53,12 @@ const EditProfileScreen = ({ navigation }) => {
   return (
   <>
       <SafeAreaView>
-        <ScrollView>
+        <ScrollView refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }>
           <Image source={require('./../../../assets/img/pfpback.jpg')} style={{ width: Dimensions.get('window').width / 1, height: 140, position: 'absolute', opacity: 0.8 }} />
           <MaterialCommunityIcons name="arrow-left" color='white' style={{ padding: 15, position: 'absolute' }} size={30} onPress={() => navigation.navigate('Profile')} />
           <Avatar.Image source={require('./../../../assets/img/teste4.jpg')} size={120} style={{ alignSelf: 'center', top: 90 }}/>
